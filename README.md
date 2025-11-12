@@ -4,7 +4,7 @@ Based on original design https://github.com/tebl/RC6502-Apple-1-Replica
 
 In addition there few hardware modules+software support was added:
 - "Dumb" terminal for I/O
-- File storage on flash disk. Micro OS/shell helps to list/load/save/delete files.
+- File storage on flash disk. Mini shell helps to list/load/save/delete files.
 - File storage on tape cassette recorder (C64 Datasette) - WIP
 - ROM extension module
 - Serial interface
