@@ -1,4 +1,4 @@
-Extended RC6502 Apple1 Replica 
+# Extended RC6502 Apple1 Replica 
 
 Based on original design https://github.com/tebl/RC6502-Apple-1-Replica 
 
