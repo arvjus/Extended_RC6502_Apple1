@@ -15,12 +15,16 @@ In addition there few hardware modules+software support was added:
 ![apple1](https://github.com/arvjus/Extended_RC6502_Apple1/blob/main/gallery/apple1_1.jpeg)
 	
 ![apple1](https://github.com/arvjus/Extended_RC6502_Apple1/blob/main/gallery/apple1_2.jpeg)
-	
+
+Running FDSH:	
 ![apple1](https://github.com/arvjus/Extended_RC6502_Apple1/blob/main/gallery/fdsh.jpeg)
-	 
+
+Telnet session to BBS:
 ![apple1](https://github.com/arvjus/Extended_RC6502_Apple1/blob/main/gallery/telnet.jpeg)
 	
+ChatGpt client:
 ![apple1](https://github.com/arvjus/Extended_RC6502_Apple1/blob/main/gallery/chatgpt.jpeg)
 	
+Chat matrix.org:
 ![apple1](https://github.com/arvjus/Extended_RC6502_Apple1/blob/main/gallery/matrix-chat.jpeg)
 
