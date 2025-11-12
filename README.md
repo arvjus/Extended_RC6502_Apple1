@@ -20,11 +20,11 @@ In addition there few hardware modules+software support was added:
 ### Running FDSH:	
 ![fdsh](https://github.com/arvjus/Extended_RC6502_Apple1/blob/main/gallery/fdsh.jpeg?raw=1)
 
-### Telnet session to BBS:
+### Telnet session into BBS:
 ![telnet](https://github.com/arvjus/Extended_RC6502_Apple1/blob/main/gallery/telnet.jpeg?raw=1)
 	
 ### ChatGpt client:
 ![chatgpt](https://github.com/arvjus/Extended_RC6502_Apple1/blob/main/gallery/chatgpt.jpeg?raw=1)
 	
-### Chat matrix.org:
+### Chat program (matrix.org):
 ![matrix-chat](https://github.com/arvjus/Extended_RC6502_Apple1/blob/main/gallery/matrix-chat.jpeg?raw=1)
