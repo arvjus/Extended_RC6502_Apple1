@@ -11,20 +11,19 @@ In addition there few hardware modules+software support was added:
 - UART -> TCP/IP socket bridge. Makes internet possible on RC6502.
 
 ## Screenshots
-	
-![apple1](https://github.com/arvjus/Extended_RC6502_Apple1/blob/main/gallery/apple1_1.jpeg)
-	
-![apple1](https://github.com/arvjus/Extended_RC6502_Apple1/blob/main/gallery/apple1_2.jpeg)
 
-Running FDSH:	
-![apple1](https://github.com/arvjus/Extended_RC6502_Apple1/blob/main/gallery/fdsh.jpeg)
+### H/W:
+![apple1](https://github.com/arvjus/Extended_RC6502_Apple1/blob/main/gallery/apple1_1.jpeg?raw=1)
+![apple1](https://github.com/arvjus/Extended_RC6502_Apple1/blob/main/gallery/apple1_2.jpeg?raw=1)
 
-Telnet session to BBS:
-![apple1](https://github.com/arvjus/Extended_RC6502_Apple1/blob/main/gallery/telnet.jpeg)
-	
-ChatGpt client:
-![apple1](https://github.com/arvjus/Extended_RC6502_Apple1/blob/main/gallery/chatgpt.jpeg)
-	
-Chat matrix.org:
-![apple1](https://github.com/arvjus/Extended_RC6502_Apple1/blob/main/gallery/matrix-chat.jpeg)
+### Running FDSH:	
+![fdsh](https://github.com/arvjus/Extended_RC6502_Apple1/blob/main/gallery/fdsh.jpeg?raw=1)
 
+### Telnet session to BBS:
+![telnet](https://github.com/arvjus/Extended_RC6502_Apple1/blob/main/gallery/telnet.jpeg?raw=1)
+	
+### ChatGpt client:
+![chatgpt](https://github.com/arvjus/Extended_RC6502_Apple1/blob/main/gallery/chatgpt.jpeg?raw=1)
+	
+### Chat matrix.org:
+![matrix-chat](https://github.com/arvjus/Extended_RC6502_Apple1/blob/main/gallery/matrix-chat.jpeg?raw=1)
