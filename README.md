@@ -9,6 +9,7 @@ In addition there few hardware modules+software support was added:
 - ROM extension module
 - Serial interface
 - UART -> TCP/IP socket bridge. Makes internet possible on RC6502.
+- Available programming languages: ASM, C, Basic
 
 ## Screenshots
 
