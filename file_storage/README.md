@@ -17,10 +17,10 @@ This is a collection of HW / SW to provide file storage capabilty for RC6502 App
  
 ## Screenshots
 
-Main menu, list files:
+### Main menu, list files:
 ![fdsh](https://github.com/arvjus/Extended_RC6502_Apple1/blob/main/gallery/fdsh.jpeg?raw=1)
 
-Card in development - runnin on emulator:
+### Card in development - runnin on emulator:
 ![fdsh](https://github.com/arvjus/Extended_RC6502_Apple1/blob/main/gallery/emulator.jpeg?raw=1)
 
 	 

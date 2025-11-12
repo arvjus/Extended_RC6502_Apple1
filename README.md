@@ -13,7 +13,7 @@ In addition there few hardware modules+software support was added:
 ## Screenshots
 
 ### H/W:
-![apple1](https://github.com/arvjus/Extended_RC6502_Apple1/blob/main/gallery/apple1_1.jpeg?raw=1)
+![apple1](https://raw.githubusercontent.com/arvjus/Extended_RC6502_Apple1/main/gallery/apple1_1.jpeg)
 ![apple1](https://github.com/arvjus/Extended_RC6502_Apple1/blob/main/gallery/apple1_2.jpeg?raw=1)
 
 ### Running FDSH:	
