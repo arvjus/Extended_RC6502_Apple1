@@ -1,0 +1,36 @@
+EESchema-LIBRARY Version 2.3
+#encoding utf-8
+#(c) SnapEDA 2016 (snapeda.com)
+#This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License (CC BY-SA) with Design Exception 1.0
+#
+# BUTT-2
+#
+DEF BUTT-2 S 0 40 Y N 1 L N
+F0 "S" -200 150 50 H V L BNN
+F1 "BUTT-2" -200 -150 50 H V L BNN
+F2 "SW_BUTT-2" 0 0 50 H I L BNN
+F3 "" 0 0 50 H I L BNN
+F4 "Gravitech" 0 0 50 H I L BNN "MF"
+F5 "9.5 mm" 0 0 50 H I L BNN "MAXIMUM_PACKAGE_HEIGHT"
+F6 "None" 0 0 50 H I L BNN "Package"
+F7 "None" 0 0 50 H I L BNN "Price"
+F8 "https://www.snapeda.com/parts/BUTT-2/Gravitech/view-part/?ref=eda" 0 0 50 H I L BNN "Check_prices"
+F9 "Manufactrer Recommendations" 0 0 50 H I L BNN "STANDARD"
+F10 "N/A" 0 0 50 H I L BNN "PARTREV"
+F11 "https://www.snapeda.com/parts/BUTT-2/Gravitech/view-part/?ref=snap" 0 0 50 H I L BNN "SnapEDA_Link"
+F12 "BUTT-2" 0 0 50 H I L BNN "MP"
+F13 "\n                        \n                            Tactile Switches MINI PUSH BUTTON SWITCH 2-PIN QTY. 4\n                        \n" 0 0 50 H I L BNN "Description"
+F14 "Not in stock" 0 0 50 H I L BNN "Availability"
+F15 "Gravitech" 0 0 50 H I L BNN "MANUFACTURER"
+DRAW
+C 81 0 20 0 0 6 N
+C -81 0 20 0 0 6 N
+P 2 0 0 6 -100 63 0 63 N
+P 2 0 0 6 0 63 100 63 N
+P 2 0 0 6 0 63 0 138 N
+X ~ 1 -300 0 200 R 40 40 0 0 P 
+X ~ 2 300 0 200 L 40 40 0 0 P 
+ENDDRAW
+ENDDEF
+#
+# End Library

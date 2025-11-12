@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"name": "http_proxy",
+			"path": "../http_proxy"
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"string": "cpp"
+		}
+	}
+}

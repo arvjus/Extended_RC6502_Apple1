@@ -1,0 +1,23 @@
+# add this section to /usr/share/arduino/hardware/arduino/avr/boards.txt
+
+atmega328.name=ATmega328 (No-P)
+
+atmega328.upload.tool=avrdude
+atmega328.upload.protocol=arduino
+atmega328.upload.maximum_size=32256
+atmega328.upload.maximum_data_size=2048
+atmega328.upload.speed=115200
+
+atmega328.bootloader.tool=avrdude
+atmega328.bootloader.low_fuses=0xFF
+atmega328.bootloader.high_fuses=0xDE
+atmega328.bootloader.extended_fuses=0xFD
+atmega328.bootloader.unlock_bits=0x3F
+atmega328.bootloader.lock_bits=0x0F
+
+atmega328.build.mcu=atmega328
+atmega328.build.f_cpu=16000000L
+atmega328.build.board=AVR_ATMEGA328
+atmega328.build.core=arduino
+atmega328.build.variant=standard
+

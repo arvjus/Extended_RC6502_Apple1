@@ -1,0 +1,7 @@
+
+all: 
+	gcc -D__LINUX__ -o gcd_lcm gcd_lcm.c extlib.c
+
+clean:
+	rm -f gcd_lcm
+	 

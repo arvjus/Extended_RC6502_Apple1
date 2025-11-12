@@ -1,0 +1,7 @@
+
+all: 
+	gcc -D__LINUX__ -o test test.c ../linux/extlib.c
+
+clean:
+	rm -f test
+	 

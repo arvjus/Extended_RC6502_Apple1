@@ -1,0 +1,3 @@
+#!/bin/sh
+
+picocom --echo --omap crcrlf -b 28800 /dev/ttyUSB0 $*

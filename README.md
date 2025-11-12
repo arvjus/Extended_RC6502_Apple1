@@ -1,28 +1,26 @@
-# FileStorage_RC6502_Apple1
+Extended RC6502 Apple1 Replica 
 
-This is a collection of HW / SW to provide file storage capabilty for RC6502 Apple1 Replica.
-	
-## Main Highlights
-	* Uses W25Q64 chip to srore the data
-	* Simple File system to keep files structured
-	* Supported files: type $06 (regular binary), $F1 (Integer Basic, ProDOS file format)
-	* Utility programs to prepare disk images or porsions of FS on regular OS (tested on Linux)			
-	
-## Status
-	Quite stable, I use it on dayly basis
- 
-## Desired improvements
-	* Better error handling. In most cases if user does input error or something unexpected happens in communication, the command is just silently ignored.
- 	* Better performance in data transfer. It takes about 3 secs to load 1Kb of data.
- 
+Based on original design https://github.com/tebl/RC6502-Apple-1-Replica 
+
+In addition there few hardware modules+software support was added:
+- "Dumb" terminal for I/O
+- File storage on flash disk. Micro OS/shell helps to list/load/save/delete files.
+- File storage on tape cassette recorder (C64 Datasette) - WIP
+- ROM extension module
+- Serial interface
+- UART -> TCP/IP socket bridge. Makes internet possible on RC6502.
+
 ## Screenshots
-![emulator](https://github.com/arvjus/FDStorage_RC6502_Apple1/blob/main/gallery/fdsh.jpg)
 	
-![emulator](https://github.com/arvjus/FDStorage_RC6502_Apple1/blob/main/gallery/emulator.jpg)
-
-![apple1](https://github.com/arvjus/FDStorage_RC6502_Apple1/blob/main/gallery/apple1_1.jpg)
+![apple1](https://github.com/arvjus/Extended_RC6502_Apple1/blob/main/gallery/apple1_1.jpeg)
 	
-![apple1](https://github.com/arvjus/FDStorage_RC6502_Apple1/blob/main/gallery/apple1_2.jpg)
+![apple1](https://github.com/arvjus/Extended_RC6502_Apple1/blob/main/gallery/apple1_2.jpeg)
 	
-![apple1](https://github.com/arvjus/FDStorage_RC6502_Apple1/blob/main/gallery/apple1_3.jpg)
+![apple1](https://github.com/arvjus/Extended_RC6502_Apple1/blob/main/gallery/fdsh.jpeg)
 	 
+![apple1](https://github.com/arvjus/Extended_RC6502_Apple1/blob/main/gallery/telnet.jpeg)
+	
+![apple1](https://github.com/arvjus/Extended_RC6502_Apple1/blob/main/gallery/chatgpt.jpeg)
+	
+![apple1](https://github.com/arvjus/Extended_RC6502_Apple1/blob/main/gallery/matrix-chat.jpeg)
+

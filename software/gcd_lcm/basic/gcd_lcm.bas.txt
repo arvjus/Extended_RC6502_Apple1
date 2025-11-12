@@ -1,0 +1,18 @@
+   10 M=1
+   20 N=100
+   25 C=0
+   30 FOR A=M TO N
+   40 FOR B=A+1 TO N
+   50 X=A
+   60 Y=B
+   80 IF Y=0 THEN GOTO 120
+   90 R=X-(X/Y)*Y
+  100 X=Y
+  110 Y=R
+  115 GOTO 80
+  120 IF X>1 THEN C=C+1
+  130 IF X>1 THEN PRINT A; ", "; B; " - GCD: "; X; ", LCM: "; (A / X) * B
+  160 NEXT B
+  170 NEXT A
+  180 PRINT "COUNT:";C
+  190 END

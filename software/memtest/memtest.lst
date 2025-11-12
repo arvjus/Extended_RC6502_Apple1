@@ -1,0 +1,141 @@
+
+; 64tass Turbo Assembler Macro V1.58.2974? listing file
+; 64tass --m6502 --nostart --output memtest.bin --list memtest.lst memtest.asm
+; Mon Mar 31 19:54:40 2025
+
+;Offset	;Hex		;Monitor	;Source
+
+;******  Processing input file: memtest.asm
+
+=1					REAL_HW = 1
+>002d					ptr:    .word ?
+.0300	4c 1c 03	jmp $031c	    jmp start
+
+;******  Processing file: system.asm
+
+=0					MOCK_HW = 0
+=$ffef					ECHO    = $FFEF
+=$ffdc					PRBYTE  = $FFDC
+=$d010					KBD     = $D010
+=$d011					KBDCR   = $D011
+.0303					KBDIN:
+.0303	ad 11 d0	lda $d011	    lda KBDCR   ; is char available?
+.0306	10 fb		bpl $0303	    bpl KBDIN   ; not as long as bit 7 is low
+.0308	ad 10 d0	lda $d010	    lda KBD
+.030b	29 7f		and #$7f	    and #$7f    ; clear 7-nth bit
+.030d	60		rts		    rts
+.030e					KBDIN_NOWAIT:
+.030e	ad 11 d0	lda $d011	    lda KBDCR   ; is char available?
+.0311	10 06		bpl $0319	    bpl KBDIN_NOWAIT_NONE   ; not as long as bit 7 is low
+.0313	ad 10 d0	lda $d010	    lda KBD
+.0316	29 7f		and #$7f	    and #$7f                ; clear 7-nth bit
+.0318	60		rts		    rts
+.0319					KBDIN_NOWAIT_NONE:
+.0319	a9 00		lda #$00	    lda #0
+.031b	60		rts		    rts
+
+;******  Return to file: memtest.asm
+
+.031c					start:
+.031c	a0 00		ldy #$00	    ldy #0
+.031e					msg_loop:
+.031e	b9 ed 03	lda $03ed,y	    lda msg, y
+.0321	f0 07		beq $032a	    beq prn_addr
+.0323	20 ef ff	jsr $ffef	    jsr ECHO
+.0326	c8		iny		    iny
+.0327	4c 1e 03	jmp $031e	    jmp msg_loop
+.032a					prn_addr:
+.032a	ad e8 03	lda $03e8	    lda lower+1
+.032d	20 dc ff	jsr $ffdc	    jsr PRBYTE
+.0330	ad e7 03	lda $03e7	    lda lower
+.0333	20 dc ff	jsr $ffdc	    jsr PRBYTE
+.0336	a9 2d		lda #$2d	    lda #'-'
+.0338	20 ef ff	jsr $ffef	    jsr ECHO
+.033b	ad ea 03	lda $03ea	    lda upper+1
+.033e	20 dc ff	jsr $ffdc	    jsr PRBYTE
+.0341	ad e9 03	lda $03e9	    lda upper
+.0344	20 dc ff	jsr $ffdc	    jsr PRBYTE
+.0347	a9 0d		lda #$0d	    lda #$0d        ; CR
+.0349	20 ef ff	jsr $ffef	    jsr ECHO
+.034c					main_loop:
+.034c	20 03 03	jsr $0303	    jsr KBDIN
+.034f	c9 46		cmp #$46	    cmp #'F'
+.0351	f0 0e		beq $0361	    beq do_fill
+.0353	c9 43		cmp #$43	    cmp #'C'
+.0355	f0 3b		beq $0392	    beq do_checksum
+.0357	c9 1b		cmp #$1b	    cmp #$1b        ; ESC
+.0359	f0 03		beq $035e	    beq exit
+.035b	4c 4c 03	jmp $034c	    jmp main_loop
+.035e					exit:
+.035e	4c 00 ff	jmp $ff00	    jmp $ff00       ; Wozmon
+.0361					do_fill:
+.0361	20 ef ff	jsr $ffef	    jsr ECHO
+.0364	ad e7 03	lda $03e7	    lda lower
+.0367	85 2d		sta $2d		    sta ptr
+.0369	ad e8 03	lda $03e8	    lda lower+1
+.036c	85 2e		sta $2e		    sta ptr+1
+.036e	a2 00		ldx #$00	    ldx #$00
+.0370					fill_loop:
+.0370	8a		txa		    txa
+.0371	a0 00		ldy #$00	    ldy #$00
+.0373	91 2d		sta ($2d),y	    sta (ptr),y
+.0375	e8		inx		    inx
+.0376	e6 2d		inc $2d		    inc ptr
+.0378	d0 02		bne $037c	    bne fill_skip_high
+.037a	e6 2e		inc $2e		    inc ptr+1
+.037c					fill_skip_high:
+.037c	a5 2e		lda $2e		    lda ptr+1
+.037e	cd ea 03	cmp $03ea	    cmp upper+1
+.0381	d0 ed		bne $0370	    bne fill_loop
+.0383	a5 2d		lda $2d		    lda ptr
+.0385	cd e9 03	cmp $03e9	    cmp upper
+.0388	d0 e6		bne $0370	    bne fill_loop
+.038a	a9 20		lda #$20	    lda #' '
+.038c	20 ef ff	jsr $ffef	    jsr ECHO
+.038f	4c 4c 03	jmp $034c	    jmp main_loop
+.0392					do_checksum:
+.0392	20 ef ff	jsr $ffef	    jsr ECHO
+.0395	ad e7 03	lda $03e7	    lda lower
+.0398	85 2d		sta $2d		    sta ptr
+.039a	ad e8 03	lda $03e8	    lda lower+1
+.039d	85 2e		sta $2e		    sta ptr+1
+.039f	a9 00		lda #$00	    lda #0
+.03a1	8d eb 03	sta $03eb	    sta checksum
+.03a4	8d ec 03	sta $03ec	    sta checksum+1
+.03a7					checksum_loop:
+.03a7	a0 00		ldy #$00	    ldy #$00
+.03a9	b1 2d		lda ($2d),y	    lda (ptr),y
+.03ab	18		clc		    clc
+.03ac	6d eb 03	adc $03eb	    adc checksum
+.03af	8d eb 03	sta $03eb	    sta checksum
+.03b2	ad ec 03	lda $03ec	    lda checksum+1
+.03b5	69 00		adc #$00	    adc #$00
+.03b7	8d ec 03	sta $03ec	    sta checksum+1
+.03ba	e6 2d		inc $2d		    inc ptr
+.03bc	d0 02		bne $03c0	    bne checksum_skip_high
+.03be	e6 2e		inc $2e		    inc ptr+1
+.03c0					checksum_skip_high:
+.03c0	a5 2e		lda $2e		    lda ptr+1
+.03c2	cd ea 03	cmp $03ea	    cmp upper+1
+.03c5	d0 e0		bne $03a7	    bne checksum_loop
+.03c7	a5 2d		lda $2d		    lda ptr
+.03c9	cd e9 03	cmp $03e9	    cmp upper
+.03cc	d0 d9		bne $03a7	    bne checksum_loop
+.03ce	a9 20		lda #$20	    lda #' '
+.03d0	20 ef ff	jsr $ffef	    jsr ECHO
+.03d3	ad ec 03	lda $03ec	    lda checksum+1
+.03d6	20 dc ff	jsr $ffdc	    jsr PRBYTE
+.03d9	ad eb 03	lda $03eb	    lda checksum
+.03dc	20 dc ff	jsr $ffdc	    jsr PRBYTE
+.03df	a9 20		lda #$20	    lda #' '
+.03e1	20 ef ff	jsr $ffef	    jsr ECHO
+.03e4	4c 4c 03	jmp $034c	    jmp main_loop
+>03e7	00 05				lower:      .addr $0500
+>03e9	00 80				upper:      .word $8000
+>03eb	00 00				checksum:   .word 0
+>03ed	0d 50 72 65 73 73 20 46		msg:        .text 13, "Press F(ill), C(hecksum), in range (03E7)-(03E9): ", 0
+>03f5	28 69 6c 6c 29 2c 20 43 28 68 65 63 6b 73 75 6d
+>0405	29 2c 20 69 6e 20 72 61 6e 67 65 20 28 30 33 45
+>0415	37 29 2d 28 30 33 45 39 29 3a 20 00
+
+;******  End of listing

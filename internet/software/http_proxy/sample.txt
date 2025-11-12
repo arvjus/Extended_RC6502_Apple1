@@ -1,0 +1,31 @@
+# ask gpt
+!CLEAR
+!POST https://api.openai.com/v1/chat/completions
+!HEAD Authorization: Bearer $(OPENAI-KEY)
+!HEAD Content-Type: application/json
+!BODY $(OPENAI-BODY)
+!FILTER OPENAI-FILTER
+z80 vs 6502*
+diffs?
+
+# matrix get a message
+!CLEAR
+!GET https://matrix.org/_matrix/client/v3/rooms/$(MATRIX-ROOM)/messages?dir=f&limit=10&from=$(MATRIX-POSITION)
+!HEAD Authorization: Bearer $(MATRIX-TOKEN)
+!HEAD Content-Type: application/json
+!FILTER MATRIX-FILTER
+!SEND
+
+!GET https://matrix.org/_matrix/client/v3/rooms/$(MATRIX-ROOM)/messages?dir=f&limit=10&from=$(MATRIX-POSITION)
+!GET https://matrix.org/_matrix/client/v3/rooms/$(MATRIX-ROOM)/messages?dir=f&limit=10&from=t10-6368238830_0_0_0_0_0_0_0_0_0_0
+!GET https://matrix.org/_matrix/client/v3/rooms/$(MATRIX-ROOM)/messages?dir=f&limit=10&from=t20-6370596138_0_0_0_0_0_0_0_0_0_0
+!SEND
+
+# matrix put a message
+!CLEAR
+!PUT https://matrix.org/_matrix/client/v3/rooms/$(MATRIX-ROOM)/send/m.room.message/$(RANDOM)
+!HEAD Authorization: Bearer $(MATRIX-TOKEN)
+!HEAD Content-Type: application/json
+!BODY $(MATRIX-BODY)
+!FILTER SILENT-FILTER
+Test message! 

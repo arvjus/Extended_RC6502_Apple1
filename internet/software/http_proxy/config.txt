@@ -1,0 +1,9 @@
+!SET WIFI-SSID xxx
+!SET WIFI-PASS yyy
+!SET OPENAI-KEY sk-proj-xzzzzzzzzzzzzz
+!SET OPENAI-BODY { "model": "gpt-4o", "max_tokens": 200, "temperature": 0.3, "messages": [{ "role": "system", "content": "Reply with a short sentence." },{ "role": "user", "content": "@CTX@ . @CNT@"}]}
+
+!SET MATRIX-TOKEN mct_xxxxxxxxxxxxxxxxxxxxxxxxxxxx
+!SET MATRIX-ROOM !yyyyyyyyyyyyyyyyy:matrix.org
+!SET MATRIX-POSITION t10-6376658391_0_0_0_0_0_0_0_0_0_0
+!SET MATRIX-BODY {"msgtype":"m.text", "body":"@CNT@ @CTX@"}

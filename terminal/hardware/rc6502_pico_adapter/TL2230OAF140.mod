@@ -1,0 +1,82 @@
+PCBNEW-LibModule-V1  
+# encoding utf-8
+Units mm
+$INDEX
+SW_TL2230OAF140
+$EndINDEX
+$MODULE SW_TL2230OAF140
+Po 0 0 0 15 00000000 00000000 ~~
+Li SW_TL2230OAF140
+Cd 
+Sc 00000000
+At STD
+Op 0 0 0
+.SolderMask 0
+.SolderPaste 0
+T0 -0.254 -5.969 1.4 1.4 0 0.05 N V 21 "SW_TL2230OAF140"
+T1 0.635 5.969 1.4 1.4 0 0.05 N V 21 "VAL**"
+DS 3.5 -3.5 3.5 3.5 0.127 21
+DS -3.5 3.5 -3.5 -3.5 0.127 21
+DS -3.5 -3.5 3.5 -3.5 0.127 27
+DS 3.5 -3.5 3.5 3.5 0.127 27
+DS 3.5 3.5 -3.5 3.5 0.127 27
+DS -3.5 3.5 -3.5 -3.5 0.127 27
+DS -3.75 -3.75 3.75 -3.75 0.05 26
+DS 3.75 -3.75 3.75 3.75 0.05 26
+DS 3.75 3.75 -3.75 3.75 0.05 26
+DS -3.75 3.75 -3.75 -3.75 0.05 26
+DC -2.04 -4 -1.94 -4 0.2 21
+DC -2.04 -4 -1.94 -4 0.2 27
+DS -3.5 -3.5 -3 -3.5 0.127 21
+DS 3 -3.5 3.5 -3.5 0.127 21
+DS -3.5 3.5 -3 3.5 0.127 21
+DS 3 3.5 3.5 3.5 0.127 21
+$PAD
+Sh "4" C 1.308 1.308 0 0 0
+Dr 0.8 0 0
+At STD N 00C0FFFF
+.SolderMask 0
+Ne 0 ""
+Po -2 2.5
+$EndPAD
+$PAD
+Sh "5" C 1.308 1.308 0 0 0
+Dr 0.8 0 0
+At STD N 00C0FFFF
+.SolderMask 0
+Ne 0 ""
+Po 0 2.5
+$EndPAD
+$PAD
+Sh "6" C 1.308 1.308 0 0 0
+Dr 0.8 0 0
+At STD N 00C0FFFF
+.SolderMask 0
+Ne 0 ""
+Po 2 2.5
+$EndPAD
+$PAD
+Sh "1" R 1.308 1.308 0 0 0
+Dr 0.8 0 0
+At STD N 00C0FFFF
+.SolderMask 0
+Ne 0 ""
+Po -2 -2.5
+$EndPAD
+$PAD
+Sh "2" C 1.308 1.308 0 0 0
+Dr 0.8 0 0
+At STD N 00C0FFFF
+.SolderMask 0
+Ne 0 ""
+Po 0 -2.5
+$EndPAD
+$PAD
+Sh "3" C 1.308 1.308 0 0 0
+Dr 0.8 0 0
+At STD N 00C0FFFF
+.SolderMask 0
+Ne 0 ""
+Po 2 -2.5
+$EndPAD
+$EndMODULE SW_TL2230OAF140

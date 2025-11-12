@@ -1,0 +1,184 @@
+(footprint "KF301-2P"
+	(version 20240108)
+	(generator "pcbnew")
+	(generator_version "8.0")
+	(layer "F.Cu")
+	(descr "Terminal block 3 pins")
+	(tags "DEV")
+	(property "Reference" "P101"
+		(at -2.032 -5.842 0)
+		(layer "F.SilkS")
+		(uuid "3c6b7ec6-a3be-427c-94f5-e364022f31d0")
+		(effects
+			(font
+				(size 1.524 1.524)
+				(thickness 0.3048)
+			)
+		)
+	)
+	(property "Value" "PWR_IN"
+		(at -2.032 5.842 0)
+		(layer "F.SilkS")
+		(uuid "b5e45aef-c5bb-4937-8c9f-870fae81dac1")
+		(effects
+			(font
+				(size 1.524 1.524)
+				(thickness 0.3048)
+			)
+		)
+	)
+	(property "Footprint" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "3f6859b7-c579-4c76-993d-00f0e78f2615")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "311e31f5-31a4-4ccf-aa92-5cc7d6eaf426")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "56bd3ca4-732b-45e2-a2ac-c9113a3b4f7d")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr through_hole)
+	(fp_line
+		(start -7.62 -4.572)
+		(end -7.62 -3.81)
+		(stroke
+			(width 0.254)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "81de0bf1-6612-490f-b4dc-757c7c878c29")
+	)
+	(fp_line
+		(start -7.62 -4.572)
+		(end 3.048 -4.572)
+		(stroke
+			(width 0.254)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "0928f8b3-a302-4765-ab28-feb487d4cb18")
+	)
+	(fp_line
+		(start -7.62 3.556)
+		(end 3.048 3.556)
+		(stroke
+			(width 0.254)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "7d4258fb-4249-4652-b8f7-289a208f2bd0")
+	)
+	(fp_line
+		(start -7.62 3.81)
+		(end -7.62 -3.81)
+		(stroke
+			(width 0.254)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "d066f54a-6f33-4a15-83a2-8cf0d7ac3e7d")
+	)
+	(fp_line
+		(start -7.62 4.572)
+		(end -7.62 3.556)
+		(stroke
+			(width 0.254)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "be2a5b70-ecc4-4ce7-92c1-0464519b2b8e")
+	)
+	(fp_line
+		(start 3.048 -4.572)
+		(end 3.048 -4.064)
+		(stroke
+			(width 0.254)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "70e0b87f-2c9d-464f-8324-6ebe17f150e5")
+	)
+	(fp_line
+		(start 3.048 3.302)
+		(end 3.048 -4.318)
+		(stroke
+			(width 0.254)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "f5a27b63-fbe3-4f0d-b1fd-5a15e70195ee")
+	)
+	(fp_line
+		(start 3.048 3.556)
+		(end 3.048 4.572)
+		(stroke
+			(width 0.254)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "7bacfaef-6f81-4ea1-8b72-f5792d323419")
+	)
+	(fp_line
+		(start 3.048 4.572)
+		(end -7.62 4.572)
+		(stroke
+			(width 0.254)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "ce39b596-1c25-453a-9294-326eba9d0d51")
+	)
+	(pad "1" thru_hole rect
+		(at -5.08 0)
+		(size 2.99974 2.99974)
+		(drill 1.24968)
+		(layers "*.Cu" "*.Mask" "F.SilkS")
+		(remove_unused_layers no)
+		(uuid "9f4a864e-8d55-4bed-a6f7-37a211268d8f")
+	)
+	(pad "2" thru_hole circle
+		(at 0 0)
+		(size 2.99974 2.99974)
+		(drill 1.24968)
+		(layers "*.Cu" "*.Mask" "F.SilkS")
+		(remove_unused_layers no)
+		(uuid "80f9628c-153e-4af1-8b15-95712571f7c9")
+	)
+	(model "walter/conn_screw/mors_3p.wrl"
+		(offset
+			(xyz 0 0 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 0)
+		)
+	)
+)

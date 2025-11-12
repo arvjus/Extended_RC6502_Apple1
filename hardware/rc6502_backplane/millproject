@@ -1,0 +1,28 @@
+back = export/rc6502_backplane-B_Cu.gbr
+back-output = export/back.gcode
+drill = export/rc6502_backplane.drl
+drill-output = export/drill.gcode
+
+# general
+metric = true
+metricoutput = true
+nog64 = true
+nom6 = true
+zchange = 2.0mm
+zsafe = 2.0mm
+
+# milling
+mill-diameters = 0.2mm
+mill-feed = 200mm/min
+mill-infeed = 0.2mm
+mill-speed = 1500rpm
+voronoi = true
+zwork = -0.35mm
+
+# drilling
+drill-feed = 80mm/min
+drill-side = back
+drill-speed = 1500rpm
+drills-available = 1.0mm, 1.5mm, 2.5mm
+nog81 = true
+zdrill = -1.8mm # board thickness + .2
