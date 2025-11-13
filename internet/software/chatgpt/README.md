@@ -4,6 +4,7 @@ Connect from host (linux):
 picocom --echo --omap crcrlf -b 28800 /dev/ttyUSB1
 
 ## Example session:
+```
 !CLEAR
 !POST https://api.openai.com/v1/chat/completions
 !HEAD Authorization: Bearer $(OPENAI-KEY)
@@ -12,6 +13,7 @@ picocom --echo --omap crcrlf -b 28800 /dev/ttyUSB1
 !FILTER JSON-CONTENT
 6502*
 is it good?
+```
 
 ## Screenshots
 
