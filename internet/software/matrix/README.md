@@ -1,5 +1,5 @@
 # matrix chat program, uses M6850B ACIA + ESP8266
-# Copyright (c) 2025 Arvid Juskaitis
+Copyright (c) 2025 Arvid Juskaitis
 
 Connect from host (linux):
 picocom --echo --omap crcrlf -b 28800 /dev/ttyUSB1
