@@ -1,0 +1,31 @@
+---
+# Compact C/C++ style configuration
+BasedOnStyle: LLVM
+IndentWidth: 2
+ColumnLimit: 100
+BreakBeforeBraces: Attach
+AllowShortFunctionsOnASingleLine: All
+AllowShortIfStatementsOnASingleLine: true
+AllowShortLoopsOnASingleLine: true
+AllowShortBlocksOnASingleLine: Always
+AllowShortEnumsOnASingleLine: true
+BinPackParameters: true
+BinPackArguments: true
+AlignAfterOpenBracket: Align
+AlignConsecutiveAssignments: false
+AlignConsecutiveDeclarations: false
+SpaceBeforeParens: ControlStatements
+PointerAlignment: Left
+IndentCaseLabels: false
+IndentPPDirectives: None
+BreakBeforeBraces: Custom
+BraceWrapping:
+  AfterControlStatement: Never
+  AfterFunction: false
+  AfterClass: false
+  AfterStruct: false
+  AfterEnum: false
+  AfterNamespace: false
+  BeforeCatch: false
+  BeforeElse: false
+  IndentBraces: false

@@ -1,0 +1,5 @@
+(sym_lib_table
+  (version 7)
+  (lib (name "EG2201A")(type "KiCad")(uri "${KIPRJMOD}/EG2201A.kicad_sym")(options "")(descr ""))
+  (lib (name "hackup-commodore")(type "Legacy")(uri "${KIPRJMOD}/hackup-commodore.lib")(options "")(descr ""))
+)

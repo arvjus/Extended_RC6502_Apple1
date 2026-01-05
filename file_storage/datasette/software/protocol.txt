@@ -1,0 +1,88 @@
+
+*** Dataseette port level ***
+
+There are three pulse full cycle durations:
+
+Pulse	Duration (µs)
+Short	366
+Medium	532
+Long	698
+
+Several segment patters: 
+
+S/S  - synchronization
+M/L  - start-of-byte marker
+S/M  - 0
+M/S  - 1
+L/L/L  - end-of-file marker
+
+During read threshold boundaries should be relative - 
+
+S: ≤ 450 µs
+
+M: 451–610 µs
+
+L: ≥ 611 µs
+
+
+File starts with series of S/S pulses (~20 cycles) for synchronization, followed by data chunks. It could be any number of chunks in the file. 
+Chunks are stored continuesly or with gaps in between. File ends with end-of-file marker.
+
+Data bytes begins with start-of-byte marker, followed by 8 bits, stored LSB first. 
+
+It is allowed to fill in gaps with sync anywhere - between the bytes or between the data chunks.
+
+Sync sequence takes 7.3 mS to proceed
+Sending 1 byte take 8.4 mS
+
+
+Data chunk has format:
+1nd and 2rd- 16 bit value - length of following payload data (excluding first 2 bytes)
+3st byte is type (header=1, payload=2, basic_header=3, checksum=4)
+the reset is payload data.
+
+Header's format:
+1nd - the length of following data
+2rd - always 0
+3st byte is always 1
+4th - type (runnable=1, basic=2, data=3)
+the rest is name of the file
+Max payload size = 32 bytes
+
+Payload's format:
+1nd and 2rd - the length of following payload data, 16 bit value
+3st byte is always 2
+4th and 5th - start address
+the rest is the payload data
+
+Basic Header's format:
+1nd - always 1
+2rd - always 2, 
+3st byte is always 3
+the rest is the payload data 512 bytes
+Fixed payload size = 515 bytes
+
+Checksum's format:
+1nd - always 2 (the length of checksum)
+2rd - always 0
+3st byte is always 4
+4th and 5th - checksum (16-bit modulo 65536 addition)
+
+Note 16-bit integer values store in little endian format.
+Note end-of-file marker is not sent to the host during read, but rather used internaly to clear the state back to idle.
+Note filling gaps with sync sequences and keep silent between files it's not requirement, just a recommendation - to distinguish audibly files from the gaps.
+
+*** UART level ***
+
+Host initiates transfers with series of commands:
+
+r       - read file. MCU reads data from Datasette until end-of-file marker is received. Host receives chunks one by one and the last expected chunk is checksum.
+s       - generate synch sequence 20 full cycles.
+w####   - write ####-number of bytes (in hex)
+e       - end the file. end-of-file marker is written.
+x       - abort, set to idle
+
+
+Checksum is calculated on the whole file on chunks of type=1, 2 and 3, send by host. During reading this value is transfered to the host at the end of data stream.
+When writing is started, tape is running and underrun occurs, while waiting until next data chunk - MCU fills the gap with sync automatically.
+If user stops Datasette, MCU goes to idle, host waits forever.

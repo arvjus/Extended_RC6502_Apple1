@@ -1,4 +1,4 @@
-; Firmware of RC6502 Apple1 Replica
+; Datasette Shell
 ; Copyright (c) 2025 Arvid Juskaitis
 
 ; Zero-Page variables
