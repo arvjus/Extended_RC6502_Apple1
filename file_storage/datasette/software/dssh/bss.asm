@@ -12,7 +12,7 @@ prg_stop:           .addr ?         ; calculated address
 ; $24 - $2b used by WozMon
 *   = $2d
 ptr:                .addr ?         ; print_msg, read, write
-flag:               .byte ?         ; flag to control execution, prg storing, loading
+type:               .byte ?         ; flag to control execution, prg storing, loading
 
 prefix:             .fill 12        
 
@@ -20,6 +20,7 @@ dat_mask:           .byte ?         ; value contains DAT bit
 ms_nibble:          .byte ?         ; store nibble temporary
 
 tmp_buffer:         .fill 11        ; variables used by conversion functions
+prg_size = tmp_buffer
 checksum = tmp_buffer+8
 
 ; $4a - $ff used by A1 BASIC

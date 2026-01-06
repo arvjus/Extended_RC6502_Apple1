@@ -1,4 +1,4 @@
-SOURCES = defs.asm bss.asm system.asm common.asm delay.asm uint2str.asm read.asm write.asm dssh.asm 
+SOURCES = defs.asm bss.asm system.asm common.asm delay.asm read.asm write.asm dssh.asm 
 REAL_HW = 1     # 1=Apple1 or 0=py65mon
 DEBUG = 0       # 1=Show traces in data exchange
 

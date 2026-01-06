@@ -76,15 +76,12 @@ rx_byte:
 
 ; Receive byte, update checksum, return byte in A
 rx_byte_checksum:
-    lda ACIA_STATUS
-    and #%00000001          ; Bit 0 = RDRF (data received)
-    beq rx_byte_checksum
-    lda ACIA_DATA           ; Get received char
+    jsr rx_byte
     jsr checksum_add
     clc                     ; TODO: handle timeout
     rts
 
-; receive first Y bytes, store into buffer, X points to the next char in buffer
+; Receive Y bytes, store into buffer, X points to the next char in buffer
 rx_y_bytes_checksum:
     jsr rx_byte_checksum
     bcs rx_y_bytes_checksum_err
@@ -99,17 +96,90 @@ rx_y_bytes_checksum_err:
     rts
 
 
-; Wait for status flag, send byte from A
+; Send byte from A, Handle XON/XOFF flow control
 tx_byte:
     pha
-wait_tx_ready:
+    ; handle XON/XOFF
     lda ACIA_STATUS
-    and #%00000010          ; Bit 1 = TDRE (transmit ready)
-    beq wait_tx_ready
+    and #%00000001              ; Bit 0 = RDRF (data received)
+    beq tx_byte_wait_ready
+    lda ACIA_DATA               ; Get received char
+    cmp #XOFF
+    bne tx_byte_wait_ready
+tx_byte_wait_xon:
+    lda ACIA_STATUS
+    and #%00000001              ; Bit 0 = RDRF (data received)
+    beq tx_byte_wait_xon        ; TODO: handle timout
+    lda ACIA_DATA               ; Get received char
+    cmp #XON
+    bne tx_byte_wait_xon
+tx_byte_wait_ready:
+    lda ACIA_STATUS
+    and #%00000010              ; Bit 1 = TDRE (transmit ready)
+    beq tx_byte_wait_ready
     pla
-    sta ACIA_DATA           ; Send byte over serial
-    clc                     ; TODO: handle timeout
+    sta ACIA_DATA               ; Send byte over serial
+    clc                         ; TODO: handle timeout
     rts
+
+; Send byte from A, no XON/XOFF flow control
+tx_byte_no_fc:
+    pha
+tx_byte_no_fc_wait_ready:
+    lda ACIA_STATUS
+    and #%00000010              ; Bit 1 = TDRE (transmit ready)
+    beq tx_byte_no_fc_wait_ready
+    pla
+    sta ACIA_DATA               ; Send byte over serial
+    clc                         ; TODO: handle timeout
+    rts
+
+; Wait for status flag, send byte from A, add to checksum
+tx_byte_checksum:
+    jsr tx_byte
+    jsr checksum_add
+    clc                         ; TODO: handle timeout
+    rts
+
+; Send Y bytes, store into buffer, X points to the next char in buffer
+tx_y_bytes_checksum:
+    lda buffer, x
+    jsr tx_byte_checksum
+    bcs tx_y_bytes_checksum_err
+    inx
+    dey
+    bne tx_y_bytes_checksum     ; not done yet? 
+    clc                         ; success
+    rts
+tx_y_bytes_checksum_err:
+    sec                         ; failure
+    rts
+
+; send a byte from A as two nibbles in hex
+tx_byte_hex:
+    pha     
+    lsr                     ; Shift high nibble to low
+    lsr
+    lsr
+    lsr
+    jsr nibble_to_ascii
+    jsr tx_byte             ; hi nibble 
+    pla
+    and #$0f                ; Mask out low nibble
+    jsr nibble_to_ascii
+    jsr tx_byte             ; lo nibble
+    rts
+
+
+; Bin -> hex
+nibble_to_ascii:
+    cmp #10          ; If >= 10, it's A-F
+    bcc nibble_to_ascii_digit
+    adc #6           ; Adjust for ASCII 'A'-'F'
+nibble_to_ascii_digit:
+    adc #$30         ; Convert to ASCII ('0'-'9' or 'A'-'F')
+    rts
+
 
 ; zero checksum
 checksum_init:

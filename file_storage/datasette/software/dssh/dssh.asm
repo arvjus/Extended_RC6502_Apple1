@@ -1,7 +1,7 @@
 ; Datasette Shell
 ; Copyright (c) 2025 Arvid Juskaitis
 
-VERSION = "0.99"
+VERSION = "1.0"
 
 .if FIRMWARE
 *   = $F000
@@ -27,7 +27,6 @@ RESET:
     .include "defs.asm"
     .include "system.asm" 
     .include "delay.asm" 
-    .include "uint2str.asm" 
     .include "common.asm" 
     .include "read.asm" 
     .include "write.asm" 
@@ -140,7 +139,7 @@ do_load:
     jsr read
     jmp menu
 do_run:
-    lda flag
+    lda type
     bne jmp_prog
     jmp menu
 jmp_prog:    

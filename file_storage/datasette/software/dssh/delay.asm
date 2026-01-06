@@ -23,14 +23,23 @@ wait3:
     bne   wait2
     rts
 
-delay_long:
+delay_500ms:
     pha
-    lda #$ff            ; 166ms
+    jsr delay_125ms
+    jsr delay_125ms
+    jsr delay_125ms
+    jsr delay_125ms
+    pla
+    rts
+
+delay_125ms:
+    pha
+    lda #$ed            ; 125ms
     jsr wait
     pla
     rts
 
-delay_short:
+delay_1ms:
     pha
     lda #$12            ; 1ms
     jsr wait

@@ -3,23 +3,13 @@
 
 ; Read file, load into memory
 
-; Protocol definitions
-CHUNK_TYPE_HEADER = 1
-CHUNK_TYPE_PAYLOAD = 2
-CHUNK_TYPE_BASIC = 3
-CHUNK_TYPE_CHECKSUM = 4
-
-FILE_TYPE_RUNNABLE = 1
-FILE_TYPE_BASIC = 2
-FILE_TYPE_DATA = 3
-
-; read regular file
+; read regular file or Integer-BASIC in ProDOS format
 read:
     lda #0                      ; reset file type
-    sta flag
+    sta type
 
-    lda #'r'                    ; send read cmd
-    jsr tx_byte
+    lda #CMD_READ               ; send read cmd
+    jsr tx_byte_no_fc
 
     jsr checksum_init
     
@@ -29,12 +19,12 @@ read:
 read_start:
     jsr read_wait_for_input     ; serial or keyboard event
     bcs read_receive_header
-    cmp #'C'
+    cmp #KEY_CANCEL
     beq read_canceled
-    cmp #'R'
+    cmp #KEY_READ
     bne read_start
-    lda #'r'                    ; send read cmd
-    jsr tx_byte
+    lda #CMD_READ               ; send read cmd
+    jsr tx_byte_no_fc
     jmp read_start
 
 read_receive_header:
@@ -42,13 +32,13 @@ read_receive_header:
     bcs read_err
     ; save file type
     lda buffer+3
-    sta flag
+    sta type
 
     jsr read_payload
     bcs read_err
     bne read_canceled
 
-    lda flag
+    lda type
     cmp #FILE_TYPE_BASIC
     bne read_receive_checksum
     jsr read_basic_header
@@ -69,8 +59,8 @@ read_done:
     clc                         ; success
     rts
 read_canceled:
-    lda #'x'                    ; cancel transfer if any
-    jsr tx_byte
+    lda #CMD_CANCEL             ; cancel transfer if any
+    jsr tx_byte_no_fc
     
     SET_PTR msg_canceled
     jsr print_msg
@@ -84,6 +74,7 @@ read_err:
 
 ; wait for pressed key or received char
 ; Cary flag - serial byte available, otherwise pressed key in A
+; -------------------------------------------------------------
 read_wait_for_input:
     ; check serial
     lda ACIA_STATUS
@@ -101,6 +92,7 @@ read_wait_for_input_serial:
     rts
 
 ; Header chunk format: 0,1-length lo, hi, 2-chunk_type=1, 3-file_type=1|2|3
+; -------------------------------------------------------------
 read_header:
     ldx #0
     ldy #4
@@ -141,6 +133,7 @@ read_header_err:
 
 ; Payread chunk format: 0,1-length lo, hi, 2-chunk_type=2, 3,4-start address lo, hi
 ; returns non zero in A if canceled
+; -------------------------------------------------------------
 read_payload:
     ldx #0
     ldy #5
@@ -181,7 +174,7 @@ read_payload:
 read_payload_rx_byte_input:
     jsr read_wait_for_input     ; serial or keyboard event
     bcs read_payload_rx_byte
-    cmp #'C'
+    cmp #KEY_CANCEL
     beq read_payload_cancel
     jmp read_payload_rx_byte_input
 read_payload_rx_byte:
@@ -218,6 +211,7 @@ read_payload_cancel:
 
 ; handle first 512 bytes of data      
 ; Basic Header chunk format: 0,1-length lo, hi, 2-chunk_type=3
+; -------------------------------------------------------------
 read_basic_header:
     ldx #0
     ldy #3
@@ -243,7 +237,7 @@ read_basic_header:
 read_skip_zp_loop_input:    
     jsr read_wait_for_input     ; serial or keyboard event
     bcs read_skip_zp_loop
-    cmp #'C'
+    cmp #KEY_CANCEL
     beq read_basic_cancel
     jmp read_skip_zp_loop_input
 read_skip_zp_loop:    
@@ -260,7 +254,7 @@ read_skip_zp_loop:
 read_receive_zp_data_byte_input:    
     jsr read_wait_for_input     ; serial or keyboard event
     bcs read_receive_zp_data_byte
-    cmp #'C'
+    cmp #KEY_CANCEL
     beq read_basic_cancel
     jmp read_receive_zp_data_byte_input
 read_receive_zp_data_byte:
@@ -277,7 +271,7 @@ read_receive_zp_data_byte:
 read_skip_stack_loop_input:    
     jsr read_wait_for_input     ; serial or keyboard event
     bcs read_skip_stack_loop
-    cmp #'C'
+    cmp #KEY_CANCEL
     beq read_basic_cancel
     jmp read_skip_stack_loop_input
 read_skip_stack_loop:    
@@ -300,13 +294,14 @@ read_basic_err:
 
 ; Checksum chunk format: 0,1-length lo, hi, 2-chunk_type=4, 3,4-checksum lo, hi
 ; returns non zero in A if canceled
+; -------------------------------------------------------------
 read_checksum:
     ldx #0
     ldy #5
 read_checksum_rx_byte_input:
     jsr read_wait_for_input     ; serial or keyboard event
     bcs read_checksum_rx_byte
-    cmp #'C'
+    cmp #KEY_CANCEL
     beq read_checksum_cancel
     jmp read_checksum_rx_byte_input
 read_checksum_rx_byte:
