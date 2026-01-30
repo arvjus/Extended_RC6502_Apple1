@@ -23,19 +23,30 @@ enum vga_pins {
 };
 
 // We can only produce 16 (4-bit) colors, so let's give them readable names - usable in main()
-enum colors {
+typedef enum {
     BLACK, DARK_GREEN, MED_GREEN, GREEN,
     DARK_BLUE, BLUE, LIGHT_BLUE, CYAN,
     RED, DARK_ORANGE, ORANGE, YELLOW,
     MAGENTA, PINK, LIGHT_PINK, WHITE
-};
+} Color;
+
+// Screen/char dimensions
+#define SCREEN_WIDTH 640
+#define SCREEN_HEIGHT 480
+#define CHAR_WIDTH  8
+#define CHAR_HEIGHT 16
+#define TAB_SPACE    4
 
 // VGA primitives - usable in main
 void initVGA();
 
 void setCursor(short x, short y);
 
-void setColor(char c, char bg);
+void setCursorOff();
+
+void setColor(char c);
+
+void setBgColor(char bg);
 
 void clearScreen();
 
@@ -46,5 +57,7 @@ void drawVLine(short x, short y, short h, char color);
 void drawHLine(short x, short y, short w, char color);
 
 void drawChar(short x, short y, unsigned char c, char color, char bg);
+
+void drawCharDefaults(unsigned char c);
 
 void writeChar(unsigned char c);

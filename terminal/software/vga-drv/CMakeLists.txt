@@ -1,5 +1,5 @@
 # cmake version
-cmake_minimum_required(VERSION 3.13)
+cmake_minimum_required(VERSION 3.18)
 
 # include the sdk.cmake file
 include(pico_sdk_import.cmake)
@@ -39,3 +39,11 @@ target_link_libraries(vga_drv PRIVATE
 
 # must match with executable name
 pico_add_extra_outputs(vga_drv)
+
+
+add_custom_target(upload
+    COMMAND picotool load -v -x vga_drv.uf2 -f
+    DEPENDS vga_drv.uf2
+    WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
+)
+

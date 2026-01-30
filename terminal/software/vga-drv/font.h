@@ -1,4 +1,4 @@
-// file modified from 
+// file modified from
 // http://ece320web.groups.et.byu.net/labs/VGATextGeneration/VGA_Terminal.html
 //
 const char font[16*128]=
